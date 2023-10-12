@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct RatingStar: View {
+    let rating: Int
+    let callback: (Int) -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct RatingStar_Previews: PreviewProvider {
-    static var previews: some View {
-        RatingStar()
+        HStack {
+            ForEach(1 ..< 6) { star in
+                Button(action: {
+                    callback(star)
+                }) {
+                    Image(systemName: star <= rating ? "star.fill" : "star")
+                        .font(.title)
+                        .foregroundColor(star <= rating ? .yellow : .white)
+                }
+            }
+        }
     }
 }

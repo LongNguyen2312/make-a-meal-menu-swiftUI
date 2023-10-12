@@ -8,21 +8,15 @@
 import SwiftUI
 
 struct PopupDetail: View {
-    let content: String
+    @Binding var content: String
     
     var body: some View {
         VStack {
-            Text(content)
-            Button("Ô sờ kê") {
-                // Đóng popup detail
-            }
+            Text(content).font(.title).foregroundColor(Color(hue: 0.035, saturation: 0.914, brightness: 0.949)).frame(maxWidth: .infinity).foregroundColor(.orange).accentColor(.orange).padding().padding(.top, 20)
+            Spacer()
         }
         .padding()
     }
 }
 
-struct PopupDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        PopupDetail(content: "")
-    }
-}
+

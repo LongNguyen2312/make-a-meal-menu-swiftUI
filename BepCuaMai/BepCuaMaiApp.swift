@@ -11,7 +11,7 @@ import SwiftUI
 struct BepCuaMaiApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NewPool()
         }
     }
 }

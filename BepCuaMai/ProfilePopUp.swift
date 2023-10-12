@@ -9,7 +9,18 @@ import SwiftUI
 
 struct ProfilePopUp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Đây là ảnh của một người con gái xinh đẹp").font(.system(size: 30))
+                .multilineTextAlignment(.center)
+                .padding()
+            Text("*Đừng tin").font(.system(size: 10))
+            
+            Image("avatar")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding()
+        }
     }
 }
 

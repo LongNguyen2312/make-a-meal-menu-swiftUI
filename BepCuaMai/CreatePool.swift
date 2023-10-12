@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CreatePool: View {
+    @Binding var result: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TextField("", text: $result , prompt: Text("Enter your menu...").foregroundColor(Color(red: 0.922, green: 0.756, blue: 0.712)), axis: .vertical).font(.system(size: 25)).frame(maxWidth: .infinity).foregroundColor(.orange).accentColor(.orange).padding().padding(.top, 20)
+            Spacer()
+        }
     }
 }
 
-struct CreatePool_Previews: PreviewProvider {
-    static var previews: some View {
-        CreatePool()
-    }
-}
