@@ -120,7 +120,7 @@ struct ContentView: View {
     }
     
     func onPostMenu() {
-        guard let url = URL(string: "http://localhost:3000/menu/add") else { return }
+        guard let url = URL(string: "https://make-a-meal-menu-backend-4e373c6f5718.herokuapp.com/menu/add") else { return }
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
