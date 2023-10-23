@@ -21,6 +21,7 @@ struct ContentView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showAlert = false
     @State private var errorMessage = ""
+    @State private var isLoading: Bool = false
     
     var body: some View {
         VStack {
@@ -81,9 +82,14 @@ struct ContentView: View {
                     }
                 }) {
                     HStack {
-                        Text("Send to Long 😏😏😏").font(.system(size: 21, weight: .regular)).foregroundColor(.black)
+                        if (isLoading == true) {
+                            ProgressView().foregroundColor(.white).progressViewStyle(CircularProgressViewStyle(tint: .black)).scaleEffect(1)
+                        } else {
+                            Text("Send to Long 😏😏😏").font(.system(size: 21, weight: .regular)).foregroundColor(.black)
+                        }
                     }.frame(maxWidth: .infinity, maxHeight: 60).background(Color.white).cornerRadius(100).padding(.vertical, 20).padding(.horizontal, 35)
-                }.alert(isPresented: $showAlert) {
+                    
+                }.disabled(isLoading == true).alert(isPresented: $showAlert) {
                     Alert(
                         title: Text("Bị lỗi rồi Mai ơiii"),
                         message: Text(errorMessage),
@@ -120,7 +126,8 @@ struct ContentView: View {
     }
     
     func onPostMenu() {
-        guard let url = URL(string: "https://make-a-meal-menu-backend-4e373c6f5718.herokuapp.com/menu/add") else { return }
+        isLoading = true
+        guard let url = URL(string: "https://e694-118-70-175-236.ngrok-free.app/menu/add") else { return }
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -137,6 +144,7 @@ struct ContentView: View {
         URLSession.shared.uploadTask(with: request, from: jsonData) { (data, response, error) in
             guard let data = data else { return }
             do {
+                isLoading = false
                 let res = try JSONDecoder().decode(MenuResponse.self, from: data)
                 if(res.success == true) {
                     DispatchQueue.main.async {
@@ -147,6 +155,7 @@ struct ContentView: View {
                     showAlert = true
                 }
             } catch {
+                isLoading = false
                 print(String(describing: error))
             }
         }.resume()

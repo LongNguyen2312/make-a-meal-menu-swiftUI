@@ -134,7 +134,7 @@ struct NewPool: View {
   
   func fetchMenus() {
     isLoading = true
-    guard let url = URL(string: "https://make-a-meal-menu-backend-4e373c6f5718.herokuapp.com/menu") else { return }
+    guard let url = URL(string: "https://e694-118-70-175-236.ngrok-free.app/menu") else { return }
     
     URLSession.shared.dataTask(with: url) { (data, response, error) in
       guard let data = data else { return }
@@ -152,7 +152,7 @@ struct NewPool: View {
   }
   
   func onUpdate(_ id: String, _ number: Int, _ isStar: Bool?) {
-    guard let url = URL(string: "https://make-a-meal-menu-backend-4e373c6f5718.herokuapp.com/menu/update/" + id) else { return }
+    guard let url = URL(string: "https://e694-118-70-175-236.ngrok-free.app/menu/update/" + id) else { return }
     var request = URLRequest(url: url)
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.httpMethod = "PATCH"
