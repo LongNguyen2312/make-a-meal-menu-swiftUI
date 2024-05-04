@@ -127,7 +127,7 @@ struct ContentView: View {
     
     func onPostMenu() {
         isLoading = true
-        guard let url = URL(string: "https://0da4-118-70-175-236.ngrok-free.app/menu/add") else { return }
+        guard let url = URL(string: "https://e099-118-70-175-236.ngrok-free.app/menu/add") else { return }
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
